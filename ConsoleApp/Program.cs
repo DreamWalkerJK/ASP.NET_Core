@@ -6,7 +6,24 @@ namespace ConsoleApp
 {
     class Program
     {
-        static void Main(string[] args)
+        /// <summary>
+        /// 测试多线程
+        /// 为多线程方法调用提供参数
+        /// </summary>
+        static void TestArea()
+        {
+            AreaClass AreaObject = new AreaClass();
+
+            System.Threading.Thread Thread = new System.Threading.Thread(AreaObject.CalcAreaNull);
+            AreaObject.Base = 30;
+            AreaObject.Height = 40;
+            Thread.Start();
+        }
+
+        /// <summary>
+        /// 测试ping
+        /// </summary>
+        static void TestPing()
         {
             string targetHost = "bing.com";
             string data = "a quick brown fox jumped over the lazy dog";
@@ -22,7 +39,7 @@ namespace ConsoleApp
 
             Console.WriteLine($"Pinging {targetHost}");
             PingReply reply = pingSender.Send(targetHost, timeout, buffer, options);
-            if(reply.Status == IPStatus.Success)
+            if (reply.Status == IPStatus.Success)
             {
                 Console.WriteLine($"Address: {reply.Address}");
                 Console.WriteLine($"RoundTrip time: {reply.RoundtripTime}");
@@ -34,6 +51,10 @@ namespace ConsoleApp
             {
                 Console.WriteLine(reply.Status);
             }
+        }
+        static void Main(string[] args)
+        {
+            TestArea();
             Console.ReadKey();
         }
     }
