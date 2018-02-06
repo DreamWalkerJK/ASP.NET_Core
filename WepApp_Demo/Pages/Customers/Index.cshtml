@@ -1,0 +1,34 @@
+﻿@{
+    Layout = "~/Pages/_Layout";
+}
+
+@page
+@model Customers.IndexModel
+
+<h1>Contacts</h1>
+<form method="post">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var contact in Model.Customers)
+            {
+                <tr>
+                    <td>@contact.Id</td>
+                    <td>@contact.Name</td>
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@contact.Id">edit</a>
+                        <button type="submit" asp-page-handler="Delete" asp-route-id="@contact.Id"></button>
+                        <button type="submit" formaction="/?id=1&amp;handle=delete"></button>
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+    <a asp-page="./Create">Create</a>
+</form> 

@@ -1,0 +1,14 @@
+﻿@namespace WepApp_Demo.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers 
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Razor Pages Sample</title>
+</head>
+<body>
+    <a asp-page="/Index">Home</a>
+    @RenderBody()
+    <a asp-page="/Customers/Create">Create</a> <br />
+</body>
+</html>
