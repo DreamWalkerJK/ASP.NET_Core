@@ -1,29 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Threading.Tasks;
 using WepApp_Demo.Data;
 
 namespace WepApp_Demo.Pages.Customers
 {
-    public class CreateModel : PageModel
+    public class CreateFATHModelModel : PageModel
     {
         private readonly AppDbContext _db;
 
-        public CreateModel(AppDbContext db)
+        public CreateFATHModelModel(AppDbContext db)
         {
             _db = db;
         }
 
-        [TempData]
-        public string Message { get; set; }
-
         [BindProperty]
         public Customer Customer { get; set; }
 
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostJoinListAsync()
         {
             if (!ModelState.IsValid)
             {
@@ -32,8 +26,17 @@ namespace WepApp_Demo.Pages.Customers
 
             _db.Customers.Add(Customer);
             await _db.SaveChangesAsync();
-            Message = $"Customer {Customer.Name} added";
             return RedirectToPage("./Index");
+        }
+
+        public async Task<IActionResult> OnPostJoinListUCAsync()
+        {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+            Customer.Name = Customer.Name?.ToUpper();
+            return await OnPostJoinListAsync();
         }
     }
 }

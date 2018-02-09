@@ -20,7 +20,12 @@ namespace WepApp_Demo
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<AppDbContext>(options => options.UseInMemoryDatabase("name"));
-            services.AddMvc();
+            services.AddMvc()
+                .AddRazorPagesOptions(options =>
+                {
+                    options.RootDirectory = "/Pages";
+                    options.Conventions.AuthorizeFolder("/Pages/Admin");
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

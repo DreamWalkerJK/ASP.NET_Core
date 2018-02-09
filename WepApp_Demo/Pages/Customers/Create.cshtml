@@ -1,15 +1,17 @@
 ﻿@{
-    Layout = "~/Pages/_Layout";
+    ViewData["Title"] = "Create Customer";
 }
 
 @page
-@model Customers.CreateModel
+@model WepApp_Demo.Pages.Customers.CreateModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers 
 
 <html>
 <body>
     <p>
         Enter your name.
     </p>
+    <h3>Msg: @Model.Message</h3>
     <div asp-validation-summary="All"></div>
     <form method="post">
         <div>Name:<input asp-for="Customer.Name" /></div>
